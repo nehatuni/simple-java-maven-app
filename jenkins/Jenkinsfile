@@ -1,29 +1,19 @@
-pipeline
-{
-
-agent {
-  label 'dev-server'
-}
-stages{
-
-    stage('build')
-    {
-        steps{
-            sh 'mvn clean package'
-'
+pipeline {
+    agent {
+        label 'dev-server'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
             }
-
-
-        post {
+        }
+    }
+    post {
         success {
             archiveArtifacts 'target/*.war'
-                }
-            }
-
+        }
     }
+}
 
-    
-    }
-    
-}    
 
